@@ -24,7 +24,6 @@ const Cart = (props) => {
 
   return (
     <div className="cart-comp">
-      <h4>Cart items</h4>
       <div className="cart-comp__list">
         {renderItems()}
       </div>

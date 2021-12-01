@@ -44,7 +44,7 @@ const Cashier = () => {
   const fetchInvs = async (s) => {
     const invs = await getInventories({
       ...(s ? { search: s } : {}),
-      size: 5,
+      size: 6,
     });
 
     if (invs instanceof Error) {
@@ -62,6 +62,7 @@ const Cashier = () => {
     if (index < 0) {
       const newEntry = {
         barcode: item.barcode,
+        name: item.name,
         quantity: 1,
         price: item.price,
       };
@@ -74,6 +75,7 @@ const Cashier = () => {
 
     clonedCart[index] = {
       barcode: item.barcode,
+      name: item.name,
       quantity: clonedCart[index].quantity + 1,
       price: item.price,
     };
@@ -194,7 +196,7 @@ const Cashier = () => {
         </div>
         <div className="cashier__cart">
           <div className="cashier__cart-list">
-            <KitTextField label="Barcode" value={searchBarcode} onChange={handleTypedBarcode} />
+            <KitTextField label="Scan" value={searchBarcode} onChange={handleTypedBarcode} />
             <Cart
               items={cart}
               onIncrement={addToCart}
@@ -203,12 +205,18 @@ const Cashier = () => {
             />
           </div>
           <div className="cashier__cart-pay">
-            <span className="cashier__cart-pay-value">Total: {totalPrice}</span>
-            <span className="cashier__cart-pay-change">Change: {moneyBack}</span>
+            <div className="cashier__cart-pay__resume">
+              <span className="cashier__cart-pay-value">Total: {totalPrice}</span>
+              <span className="cashier__cart-pay-change">Change: {moneyBack}</span>
+            </div>
             <KitTextField label="Payed" type="number" value={amountPay} onChange={handleAmoutToPay} />
             <div className="cashier__cart-pay__action">
-              <KitButton className="cashier__cart-pay__action-pay" onClick={handlePay}>Pay</KitButton>
-              <KitButton className="cashier__cart-pay__action-cancel" onClick={handlePay}>Cancel</KitButton>
+              <div className="cashier__cart-pay__action-pay">
+                <KitButton className="action-pay__button" onClick={handlePay}>Pay</KitButton>
+              </div>
+              <div className="cashier__cart-pay__action-cancel">
+                <KitButton className="action-cancel__button" onClick={handlePay}>Cancel</KitButton>
+              </div>
             </div>
           </div>
         </div>

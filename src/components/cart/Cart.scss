@@ -3,9 +3,8 @@
   
   .cart-comp__list {
     max-height: 30rem;
+    min-height: 30rem;
     overflow-y: scroll;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    overflow-x: hidden;
   }
 }

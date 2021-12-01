@@ -2,55 +2,68 @@
 
 .cashier {
   display: flex;
-  width: 100%;
   justify-content: space-between;
-
-  .cashier__items, .cashier__cart {
-    margin: 1rem 0.2rem;
-  }
+  margin: 1rem auto;
 
   .cashier__items {
-    width: 60%;
+    width: 59%;
   }
 
   .cashier__cart {
-    width: 35%;
+    width: 40%;
+  }
 
-    .cashier__cart-list {
-      margin: 1rem 0;
-      min-height: 20rem;
-    }
+  .cashier__cart-pay {
+    display: flex;
+    flex-direction: column;
 
-    .cashier__cart-pay {
+    .cashier__cart-pay__resume {
       display: flex;
-      flex-direction: column;
-      line-height: 2rem;
+      justify-content: space-between;
+      margin: 1rem 0;
 
       .cashier__cart-pay-value {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: bold;
       }
 
       .cashier__cart-pay-change {
         font-size: 15px;
-        font-weight: bold;
       }
+    }
 
-      .cashier__cart-pay__action {
-        margin: 0.5rem;
-        display: flex;
-        justify-content: space-between;
+    .cashier__cart-pay__action {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
 
-        .cashier__cart-pay__action-cancel {
-          background-color: red;
+      .cashier__cart-pay__action-pay {
+        width: 70%;
 
+        .action-pay__button {
+          &:hover {
+            background-color: $color-main-dark
+          }
+          
           &:active {
-            background-color: gray;
+            background-color: $color-main-light;
           }
         }
+      }
 
-        .cashier__cart-pay__action-pay, .cashier__cart-pay__action-cancel {
-          width: 5rem;
+      .cashier__cart-pay__action-cancel {
+        width: 28%;
+
+        .action-cancel__button {
+          background-color: $color-logout;
+
+          &:hover {
+            background-color: $color-second;
+          }
+          
+          &:active {
+            background-color: $color-main-light;
+          }
         }
       }
     }

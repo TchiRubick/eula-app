@@ -3,25 +3,24 @@
 .item-comp__list-item {
   @include border-card;
   box-sizing: border-box;
-  width: 30%;
-  @include desktopBreakpoint {
-    width: 100%;
-  }
+  min-width: 100%;
+  max-height: 8rem;
+
   display: flex;
   flex-direction: column;
-  margin: 0.3rem 0.2rem;
+  margin: 0.2rem auto;
 
   .item-comp__list-item__action {
     margin: 0.3rem 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     .item__action-button {
-      width: 90%;
+      width: 98%;
+      cursor: pointer;
 
       &.minus {
         background-color: $color-fourth;
-        cursor: pointer;
         &:active {
           background-color: $color-main-light;
         }
@@ -29,15 +28,29 @@
 
       &.remove {
         background-color: $color-logout;
-        cursor: pointer;
         &:active {
           background-color: $color-main-light;
         }
       }
 
       &.plus {
-        cursor: pointer;
+        &:active {
+          background-color: $color-main-light;
+        }
       }
     }
+  }
+
+  .item-comp__list-item__important-info {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    justify-content: space-between;
+  }
+
+  .item-comp__list-item__important-commande {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
   }
 }
