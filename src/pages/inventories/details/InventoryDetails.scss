@@ -1,0 +1,14 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.inventorie-details-page {
+  margin: 1rem auto;
+
+  .inventorie-details-page__form {
+    @include border-card;
+
+    .inventorie-details-page__form-infos {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

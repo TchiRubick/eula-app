@@ -1,0 +1,55 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+@mixin linkAction() {
+  color: $white;
+  text-decoration: underline;
+}
+
+.menu {
+  box-sizing: border-box;
+  padding: 1rem;
+  min-height: 3rem;
+  width: 100%;
+  background-color: $color-main;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+
+  .menu__item {
+    align-self: center;
+
+    .menu__item__title {
+      color: $white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .menu__item__link-logout {
+      color: $white;
+      font-weight: bold;
+      background-color: $color-logout;
+      padding: 0.3rem;
+      border-radius: 0.4rem;
+    }
+
+    .menu__item__navlink {
+      color: $color-main-light;
+      display: flex;
+
+      .menu__item__navlink-item {
+        margin: 0 0.5rem;
+
+        &:hover {
+          @include linkAction();
+        }
+
+        .menu__item__navlink-item__active {
+          @include linkAction();
+        }
+      }
+
+    }
+
+  }
+}

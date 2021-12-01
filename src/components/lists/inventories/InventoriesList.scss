@@ -1,0 +1,91 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.inventories-list {
+  display: flex;
+  flex-direction: column;
+
+  .inventories-list__filter {
+    margin: 1rem 0;
+    
+    .filter__input {
+      width: 100%;
+    }
+  }
+
+  .inventories-list__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .list__loader {
+      width: 100%;
+      margin: 1rem auto;
+      box-sizing: border-box;
+    }
+
+    .list__item {
+      width: 20%;
+      box-sizing: border-box;
+      @include border-card;
+      margin: 0.5rem 0;
+
+      @include tabletBreakpoint {
+        width: 100%;
+      }
+
+      @include mobileBreakpoint {
+        width: 100%;
+      }
+
+      display: flex;
+      flex-direction: column;
+
+      &:hover {
+        background-color: $color-main-light;
+      }
+
+      .list__item-value {
+        display: flex;
+        justify-content: space-between;
+
+        .list__item-value__barcode {
+          font-weight: bold;
+        }
+
+        .list__item-value_name {
+          font-style: italic;
+        }
+
+        .list__item-value__label {
+          text-decoration: underline;
+        }
+
+        &.footer {
+          margin: 0.5rem 0;
+          flex-direction: column;
+
+          &> * {
+            margin-top: 0.3rem;
+          }
+
+          .list__item-button {
+            cursor: pointer;
+            
+            &.details {
+              color: $gray;
+              background-color: $color-third;
+            }
+          }
+        }
+      }
+    }
+
+    .list__item-blur {
+      width: 30%;
+    }
+  }
+
+  .inventories-list__pagination {
+    margin: 1rem auto 0;
+  }
+}

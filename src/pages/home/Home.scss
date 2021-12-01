@@ -1,0 +1,40 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.page-home {
+  .page-home__container {
+    margin: auto;
+    margin-top: 30vh;
+
+    @include tabletBreakpoint {
+      margin-top: 20vh;
+    }
+
+    @include mobileBreakpoint {
+      margin-top: 15vh;
+    }
+
+    .page-home__container__card {
+      @include border-card;
+      margin: auto;
+      width: 30%;
+
+      @include tabletBreakpoint {
+        width: 50%;
+      }
+
+      @include mobileBreakpoint {
+        width: 80%;
+      }
+
+      .page-home__container-grid {
+        display: flex;
+        flex-direction: column;
+  
+        .page-home__container-grid__item {
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+
+  }
+}

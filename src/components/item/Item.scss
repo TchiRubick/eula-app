@@ -1,0 +1,43 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.item-comp__list-item {
+  @include border-card;
+  box-sizing: border-box;
+  width: 30%;
+  @include desktopBreakpoint {
+    width: 100%;
+  }
+  display: flex;
+  flex-direction: column;
+  margin: 0.3rem 0.2rem;
+
+  .item-comp__list-item__action {
+    margin: 0.3rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .item__action-button {
+      width: 90%;
+
+      &.minus {
+        background-color: $color-fourth;
+        cursor: pointer;
+        &:active {
+          background-color: $color-main-light;
+        }
+      }
+
+      &.remove {
+        background-color: $color-logout;
+        cursor: pointer;
+        &:active {
+          background-color: $color-main-light;
+        }
+      }
+
+      &.plus {
+        cursor: pointer;
+      }
+    }
+  }
+}

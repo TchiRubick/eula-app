@@ -1,0 +1,11 @@
+@import "@my2rela/react-kit/components/style.scss";
+.cart-comp {
+  
+  .cart-comp__list {
+    max-height: 30rem;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}

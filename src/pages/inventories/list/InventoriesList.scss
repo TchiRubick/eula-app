@@ -1,0 +1,7 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.inventories-list-page {
+  margin-top: 1rem;
+  width: 100%;
+  @include border-card;
+}

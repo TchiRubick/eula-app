@@ -1,0 +1,65 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.layout {
+  .layout__header {
+    width: 100%;
+  }
+
+  .layout__body {
+    display: flex;
+    justify-content: space-between;
+
+    @include mobileBreakpoint {
+      flex-direction: column;
+    }
+
+    @include tabletBreakpoint {
+      flex-direction: column;
+    }
+
+    .layout__body__sideMenu {
+      width: 15%;
+      margin: 1rem auto;
+      box-sizing: border-box;
+
+      @include mobileBreakpoint {
+        width: 100%;
+        order: 2;
+      }
+
+      @include tabletBreakpoint {
+        width: 100%;
+        order: 2;
+      }
+
+      .layout__body__sideMenu-card {
+        @include border-card;
+
+        display: flex;
+        flex-direction: column;
+
+        &> * {
+          margin: 1rem 0;
+        }
+
+        .sideMenu-card__link-active {
+          color: $color-main;
+          font-weight: bold;
+        }
+      }
+    }
+    
+    .layout__body__children {
+      width: 85%;
+      margin: 1rem auto;
+
+      @include mobileBreakpoint {
+        width: 100%;
+      }
+
+      @include tabletBreakpoint {
+        width: 100%;
+      }
+    }
+  }
+}

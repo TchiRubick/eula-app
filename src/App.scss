@@ -1,0 +1,57 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+html {
+  height: 100vh;
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+#root {
+  height: 100vh;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+li, ul {
+  list-style: none;
+}
+
+input, button, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+* {
+  outline: none;
+}
+
+h1 {
+  color: $color-main;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #9fa3a37b;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #9fa3a37b;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #9fa3a37b;
+}
