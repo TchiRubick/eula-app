@@ -1,7 +1,6 @@
 @import "@my2rela/react-kit/components/style.scss";
 
 .page-home {
-  .page-home__container {
     margin: auto;
     margin-top: 30vh;
 
@@ -16,7 +15,7 @@
     .page-home__container__card {
       @include border-card;
       margin: auto;
-      width: 30%;
+      width: 50%;
 
       @include tabletBreakpoint {
         width: 50%;
@@ -35,6 +34,8 @@
         }
       }
     }
+}
 
-  }
+.page-home__dashboard-message {
+  text-align: center;
 }

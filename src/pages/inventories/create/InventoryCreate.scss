@@ -1,0 +1,10 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.inventory-create-page {
+  margin-top: 1rem;
+  
+  @include desktopBreakpoint {
+    margin-top: 5rem;
+    @include border-card;
+  }
+}

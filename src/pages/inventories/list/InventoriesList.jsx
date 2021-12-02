@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { KitContainer } from '@my2rela/react-kit';
+import { KitContainer, KitButton } from '@my2rela/react-kit';
 
 import './InventoriesList.scss';
 
@@ -22,22 +23,22 @@ const InventoriesList = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = (s, p) => {
+  const history = useHistory();
+
+  const fetchData = async (s, p) => {
     setIsLoading(true);
 
     const query = {
       ...(s ? { search: s } : {}),
       ...(p ? { page: p } : {}),
-      size: 30,
+      size: 3,
     };
 
-    Promise.all([
-      getInventories(query),
-    ]).then(([fetchedInventoriesList]) => {
-      setInventoriesList(fetchedInventoriesList.inventories);
-      setPagination({ ...pagination, total: fetchedInventoriesList.stats.totalPage });
-      setIsLoading(false);
-    });
+    const fetchedInventoriesList = await getInventories(query);
+
+    setInventoriesList(fetchedInventoriesList.inventories);
+    setPagination({ page: p, total: fetchedInventoriesList.stats.totalPage });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -55,7 +56,6 @@ const InventoriesList = () => {
   };
 
   const handlePageChange = (_e, pageAimed) => {
-    setPagination({ ...pagination, page: pageAimed });
     fetchData(searchValue, pageAimed);
   };
 
@@ -63,9 +63,14 @@ const InventoriesList = () => {
     addToCart(barcode);
   };
 
+  const handleClickCreate = () => {
+    history.push('/inventories/create');
+  };
+
   return (
     <KitContainer>
       <div className="inventories-list-page">
+        <KitButton onClick={handleClickCreate}>Create Inventory</KitButton>
         <InvList
           items={inventoriesList}
           pagination={pagination}

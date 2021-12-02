@@ -46,16 +46,18 @@ const InventoryCreate = () => {
 
   return (
     <KitContainer>
-      <KitAlert type={alertType} isOpen={isAlertOpen} onClose={handleNotificationClose}>
-        {alertMessage}
-      </KitAlert>
-      <h1>Create an inventory</h1>
-      <FormInventory
-        onSubmit={handleSubmit}
-        disableSubmit={processing}
-        clean={cleanFields}
-        onClean={handleFieldCleaned}
-      />
+      <div className="inventory-create-page">
+        <KitAlert type={alertType} isOpen={isAlertOpen} onClose={handleNotificationClose}>
+          {alertMessage}
+        </KitAlert>
+        <h1>Create an inventory</h1>
+        <FormInventory
+          onSubmit={handleSubmit}
+          disableSubmit={processing}
+          clean={cleanFields}
+          onClean={handleFieldCleaned}
+        />
+      </div>
     </KitContainer>
   );
 };

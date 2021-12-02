@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react';
 
 import {
   KitTextField,
-  KitContainer,
   KitButton,
   KitAlert,
 } from '@my2rela/react-kit';
+
+import { DiAptana } from 'react-icons/di';
 
 import './Home.scss';
 
@@ -61,7 +62,9 @@ const Home = () => {
   const pageContent = () => {
     if (userInfos.user) {
       return (
-        <div>Dashboard, under development</div>
+        <div className="page-home__dashboard-message">
+          <h1><DiAptana />Dashboard, under development</h1>
+        </div>
       );
     }
 
@@ -100,9 +103,7 @@ const Home = () => {
       <KitAlert type="error" isOpen={isAlertOpen} onClose={handleNotificationClose}>
         {errorMessage}
       </KitAlert>
-      <KitContainer className="page-home__container">
-        {pageContent()}
-      </KitContainer>
+      {pageContent()}
     </div>
   );
 };

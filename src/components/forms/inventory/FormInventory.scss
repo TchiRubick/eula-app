@@ -11,9 +11,18 @@
   .form-inventorie__item-quantify {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @include desktopBreakpoint {
+      flex-direction: row;
+    }
 
     .form-inventorie__item {
-      width: 30%;
+      width: 100%;
+
+      @include desktopBreakpoint {
+        width: 30%;
+      }
     }
   }
 

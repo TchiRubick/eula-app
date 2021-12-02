@@ -3,7 +3,7 @@ export const priceFormat = (v) => {
     return '0';
   }
 
-  return new Intl.NumberFormat().format(v);
+  return `${new Intl.NumberFormat().format(v)} Ar`;
 };
 
 export default priceFormat;

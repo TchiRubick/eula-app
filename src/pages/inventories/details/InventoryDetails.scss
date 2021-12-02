@@ -4,7 +4,11 @@
   margin: 1rem auto;
 
   .inventorie-details-page__form {
-    @include border-card;
+
+    @include desktopBreakpoint {
+      margin-top: 5rem;
+      @include border-card;
+    }
 
     .inventorie-details-page__form-infos {
       display: flex;

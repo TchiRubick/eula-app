@@ -85,12 +85,11 @@ const InventoryDetails = () => {
 
   const renderForm = () => (
     <div className="inventorie-details-page__form">
-      <h3>Update inventorie: {responseValue.barcode}</h3>
+      <h1>Update inventorie: {responseValue.name} - {responseValue.barcode}</h1>
       <div className="inventorie-details-page__form-infos">
-        <span>Name: <b>{responseValue.name}</b></span>
         <span>Cost: <b>{priceFormat(responseValue.cost)}</b></span>
         <span>Price: <b>{priceFormat(responseValue.price)}</b></span>
-        <span>Current Quantity in stock: <b>{responseValue.quantity}</b></span>
+        <span>Stock: <b>{responseValue.quantity}</b></span>
       </div>
       <FormInventory preFilled={preValue} onSubmit={handleSubmit} disableSubmit={processing} />
     </div>

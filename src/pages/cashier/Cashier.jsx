@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import { KitTextField, KitContainer, KitButton } from '@my2rela/react-kit';
+import {
+  KitTextField,
+  KitContainer,
+  KitButton,
+  KitAlert,
+} from '@my2rela/react-kit';
 import useScanDetection from 'use-scan-detection';
 
 import './Cashier.scss';
 
 import { getInventories, getInventory } from '../../api/inventory.api';
+import { createSale } from '../../api/sale.api';
 import InventoriesList from '../../components/lists/inventories/InventoriesList';
 import Cart from '../../components/cart/Cart';
 
@@ -19,6 +25,9 @@ const Cashier = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [moneyBack, setMoneyBack] = useState(0);
   const [amountPay, setAmountPay] = useState(0);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('error');
 
   useEffect(() => {
     fetchInvs();
@@ -37,6 +46,11 @@ const Cashier = () => {
     }, 0);
 
     setTotalPrice(sum);
+
+    if (!amountPay || amountPay < 1 || totalPrice < 1) {
+      setMoneyBack(0);
+      return;
+    }
 
     setMoneyBack((sum - amountPay) * -1);
   }, [JSON.stringify(cart), amountPay]);
@@ -177,14 +191,68 @@ const Cashier = () => {
     setAmountPay(e.target.value);
   };
 
-  const handlePay = () => {
+  const handleCancel = () => {
+    setCart([]);
+    setSearch('');
+    setSearchBarcode('');
+    setAmountPay(0);
+    setTotalPrice(0);
+    setMoneyBack(0);
+  };
 
+  const handlePay = async () => {
+    const saleData = {
+      inventories: getInventoriesForSale(),
+      payed: amountPay,
+      backed: moneyBack,
+    };
+
+    const response = await createSale(saleData);
+
+    if (response instanceof Error) {
+      setAlertMessage(response.message);
+      setAlertType('error');
+      setIsAlertOpen(true);
+      return;
+    }
+
+    setAlertMessage('Successful transaction');
+    setAlertType('success');
+    setIsAlertOpen(true);
+    handleCancel();
+  };
+
+  const getInventoriesForSale = () => cart.map((c) => ({
+    barcode: c.barcode,
+    price: c.price,
+    quantity: c.quantity,
+  }));
+
+  const isValidCart = () => cart.length > 0 && moneyBack >= 0;
+
+  const handleNotificationClose = () => {
+    setIsAlertOpen(false);
+  };
+
+  const handlePayFocus = () => {
+    if (amountPay === 0) {
+      setAmountPay('');
+    }
+  };
+
+  const handlePayBlur = () => {
+    if (amountPay === '') {
+      setAmountPay(0);
+    }
   };
 
   useScanDetection({ onComplete: handleScannedBarcode });
 
   return (
     <KitContainer>
+      <KitAlert type={alertType} isOpen={isAlertOpen} onClose={handleNotificationClose}>
+        {alertMessage}
+      </KitAlert>
       <div className="cashier">
         <div className="cashier__items">
           <InventoriesList
@@ -209,13 +277,13 @@ const Cashier = () => {
               <span className="cashier__cart-pay-value">Total: {totalPrice}</span>
               <span className="cashier__cart-pay-change">Change: {moneyBack}</span>
             </div>
-            <KitTextField label="Payed" type="number" value={amountPay} onChange={handleAmoutToPay} />
+            <KitTextField label="Payed" type="number" onBlur={handlePayBlur} onFocus={handlePayFocus} value={amountPay} onChange={handleAmoutToPay} />
             <div className="cashier__cart-pay__action">
               <div className="cashier__cart-pay__action-pay">
-                <KitButton className="action-pay__button" onClick={handlePay}>Pay</KitButton>
+                <KitButton className="action-pay__button" onClick={handlePay} disabled={!isValidCart()}>Pay</KitButton>
               </div>
               <div className="cashier__cart-pay__action-cancel">
-                <KitButton className="action-cancel__button" onClick={handlePay}>Cancel</KitButton>
+                <KitButton className="action-cancel__button" onClick={handleCancel}>Cancel</KitButton>
               </div>
             </div>
           </div>
