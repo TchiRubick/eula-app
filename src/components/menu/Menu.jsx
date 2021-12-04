@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import { FaCashRegister, FaRegListAlt } from 'react-icons/fa';
+import { TiChartLineOutline, TiUser } from 'react-icons/ti';
+
 import './Menu.scss';
 
 import Config from '../../config/config';
@@ -12,18 +15,22 @@ const linkList = [
   {
     path: '/inventories',
     name: 'Inventories',
+    icon: <FaRegListAlt size={15} />,
   },
   {
     path: '/cashier',
     name: 'Cashier',
+    icon: <FaCashRegister size={15} />,
   },
   {
     path: '/sales',
     name: 'Sales',
+    icon: <TiChartLineOutline size={15} />,
   },
   {
     path: '/users',
     name: 'Users',
+    icon: <TiUser size={15} />,
   },
 ];
 
@@ -44,7 +51,7 @@ const Menu = () => {
 
   const renderNavLink = () => linkList.map((l) => (
     <div className="menu__item__navlink-item" key={l.name}>
-      <NavLink to={l.path} activeClassName="menu__item__navlink-item__active">{l.name}</NavLink>
+      <NavLink to={l.path} activeClassName="menu__item__navlink-item__active">{l.icon} {l.name}</NavLink>
     </div>
   ));
 

@@ -11,9 +11,10 @@ import useScanDetection from 'use-scan-detection';
 import './Cashier.scss';
 
 import { getInventories, getInventory } from '../../api/inventory.api';
-import { createSale } from '../../api/sale.api';
+import { createSale, getLastSale, cancelLastSale } from '../../api/sale.api';
 import InventoriesList from '../../components/lists/inventories/InventoriesList';
 import Cart from '../../components/cart/Cart';
+import SaleItem from '../../components/saleItem/SaleItem';
 
 let delayer;
 
@@ -28,9 +29,11 @@ const Cashier = () => {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('error');
+  const [lastSale, setLastSale] = useState(null);
 
   useEffect(() => {
     fetchInvs();
+    fetchLastSale();
   }, []);
 
   useEffect(() => {
@@ -54,6 +57,16 @@ const Cashier = () => {
 
     setMoneyBack((sum - amountPay) * -1);
   }, [JSON.stringify(cart), amountPay]);
+
+  const fetchLastSale = async () => {
+    const last = await getLastSale();
+
+    if (last instanceof Error) {
+      return;
+    }
+
+    setLastSale(last.sale);
+  };
 
   const fetchInvs = async (s) => {
     const invs = await getInventories({
@@ -220,6 +233,7 @@ const Cashier = () => {
     setAlertType('success');
     setIsAlertOpen(true);
     handleCancel();
+    fetchLastSale();
   };
 
   const getInventoriesForSale = () => cart.map((c) => ({
@@ -244,6 +258,16 @@ const Cashier = () => {
     if (amountPay === '') {
       setAmountPay(0);
     }
+  };
+
+  const cancelLastTransaction = async () => {
+    const canceled = await cancelLastSale();
+
+    if (canceled instanceof Error) {
+      return;
+    }
+
+    setLastSale(canceled.sale);
   };
 
   useScanDetection({ onComplete: handleScannedBarcode });
@@ -283,9 +307,14 @@ const Cashier = () => {
                 <KitButton className="action-pay__button" onClick={handlePay} disabled={!isValidCart()}>Pay</KitButton>
               </div>
               <div className="cashier__cart-pay__action-cancel">
-                <KitButton className="action-cancel__button" onClick={handleCancel}>Cancel</KitButton>
+                <KitButton className="action-cancel__button" onClick={handleCancel}>Clear</KitButton>
               </div>
             </div>
+          </div>
+          <div className="cashier__cart-last-transaction">
+            <h5>Your last transaction</h5>
+            <SaleItem item={lastSale} />
+            <KitButton disabled={lastSale.status !== 'saled'} onClick={cancelLastTransaction}>Cancel this transaction</KitButton>
           </div>
         </div>
       </div>
