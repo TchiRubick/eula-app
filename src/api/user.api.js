@@ -11,3 +11,9 @@ export const checkUser = async () => {
 
   return res;
 };
+
+export const getUserList = async () => {
+  const res = await queryApiCall('GET', '/admin/users/');
+
+  return res;
+};

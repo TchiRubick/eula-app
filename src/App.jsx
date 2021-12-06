@@ -11,6 +11,7 @@ import Home from './pages/home/Home';
 import InventoryCreate from './pages/inventories/create/InventoryCreate';
 import InventoriesList from './pages/inventories/list/InventoriesList';
 import InventoryDetails from './pages/inventories/details/InventoryDetails';
+import UserList from './pages/users/list/UserList';
 import Cashier from './pages/cashier/Cashier';
 import NotFound from './pages/errors/notFound/NotFound';
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route exact path="/inventories/create"><InventoryCreate /></Route>
             <Route exact path="/inventories/inventorie/:barcode"><InventoryDetails /></Route>
             <Route exact path="/cashier"><Cashier /></Route>
+            <Route exact path="/users"><UserList /></Route>
             <Route><NotFound /></Route>
           </Switch>
         </Layout>

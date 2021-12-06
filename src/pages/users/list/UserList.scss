@@ -1,0 +1,73 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.user-list {
+  margin: 1rem auto;
+  width: 100%;
+
+  .user-list__create-user {
+    width: 15rem;
+  }
+
+  .user-list__user-info, .user-list__user-info-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px $color-main-light solid;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    margin: 0.3rem 0;
+
+    .user-info__content {
+      text-align: center;
+      width: 24%;
+
+      @include mobileBreakpoint {
+        width: 45%;
+
+        &.content__name,
+        &.content__role,
+        &.content__action {
+          display: none;
+        }
+      }
+
+      @include tabletBreakpoint {
+        width: 45%;
+
+        &.content__name,
+        &.content__role {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .user-list__user-info-header {
+    text-align: center;
+
+    .user-info__header-list {
+      font-weight: bold;
+      width: 24%;
+
+      @include mobileBreakpoint {
+        width: 45%;
+
+        &.header__name,
+        &.header__role,
+        &.header__action {
+          display: none;
+        }
+      }
+
+      @include tabletBreakpoint {
+        width: 45%;
+
+        &.header__name,
+        &.header__role {
+          display: none;
+        }
+      }
+    }
+  }
+}
