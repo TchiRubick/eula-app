@@ -17,3 +17,9 @@ export const getUserList = async () => {
 
   return res;
 };
+
+export const createUser = async (body) => {
+  const res = await bodyApiCall('POST', '/admin/users/', body);
+
+  return res;
+};
