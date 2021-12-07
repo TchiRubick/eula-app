@@ -66,6 +66,12 @@ const FormInventory = (props) => {
     && !disableSubmit;
 
   const setBarcodeScan = (barcode) => {
+    const reg = /^\d+$/;
+
+    if (!reg.test(barcode)) {
+      return;
+    }
+
     setValues({ ...values, barcode });
   };
 

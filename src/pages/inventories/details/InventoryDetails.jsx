@@ -76,7 +76,7 @@ const InventoryDetails = () => {
     setAlertType('success');
     setProcessing(false);
     setIsAlertOpen(true);
-    history.push(`/inventories/inventorie/${values.barcode}`);
+    history.push(`/inventories/inventory/${values.barcode}`);
   };
 
   const handleNotificationClose = () => {

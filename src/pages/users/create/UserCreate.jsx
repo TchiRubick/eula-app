@@ -44,7 +44,7 @@ const UserCreate = () => {
       return;
     }
 
-    history.push('/');
+    history.push('/users');
   };
 
   const handleNotificationClose = () => {
@@ -56,6 +56,7 @@ const UserCreate = () => {
       <KitAlert type="error" isOpen={isAlertOpen} onClose={handleNotificationClose}>
         {alertMessage}
       </KitAlert>
+      <h1>Add a new user</h1>
       <KitContainer>
         <form onSubmit={handleSubmit}>
           <KitTextField className="user-create__input" label="Name" onChange={handleChange('name')} />

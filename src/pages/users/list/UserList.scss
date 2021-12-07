@@ -4,8 +4,17 @@
   margin: 1rem auto;
   width: 100%;
 
-  .user-list__create-user {
+  .actions__create-user, .actions__change-password {
     width: 15rem;
+  }
+
+  .actions__change-password {
+    margin-left: 1rem;
+  }
+
+  .user-list__actions {
+    display: flex;
+    justify-content: flex-start;
   }
 
   .user-list__user-info, .user-list__user-info-header {

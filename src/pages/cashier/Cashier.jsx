@@ -314,7 +314,7 @@ const Cashier = () => {
           <div className="cashier__cart-last-transaction">
             <h5>Your last transaction</h5>
             <SaleItem item={lastSale} />
-            <KitButton disabled={lastSale.status !== 'saled'} onClick={cancelLastTransaction}>Cancel this transaction</KitButton>
+            <KitButton disabled={!lastSale || lastSale.status !== 'saled'} onClick={cancelLastTransaction}>Cancel this transaction</KitButton>
           </div>
         </div>
       </div>

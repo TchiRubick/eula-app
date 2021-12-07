@@ -86,7 +86,7 @@ const InventoriesList = (props) => {
         >
           Add to cart
         </KitButton>
-        <Link to={`/inventories/inventorie/${il.barcode}`}>
+        <Link to={`/inventories/inventory/${il.barcode}`}>
           <KitButton className="list__item-button details">Details</KitButton>
         </Link>
       </div>

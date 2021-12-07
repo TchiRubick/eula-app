@@ -33,7 +33,7 @@ const InventoryCreate = () => {
     setCleanFields(true);
     setProcessing(false);
     setIsAlertOpen(true);
-    history.push(`/inventories/inventorie/${value.barcode}`);
+    history.push(`/inventories/inventory/${value.barcode}`);
   };
 
   const handleNotificationClose = () => {

@@ -23,3 +23,9 @@ export const createUser = async (body) => {
 
   return res;
 };
+
+export const changePassword = async (body) => {
+  const res = await bodyApiCall('PUT', '/private/users/new-password', body);
+
+  return res;
+};

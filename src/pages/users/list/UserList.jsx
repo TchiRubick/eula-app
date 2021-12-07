@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { KitButton, KitContainer } from '@my2rela/react-kit';
 
 import './UserList.scss';
 
 import { getUserList } from '../../../api/user.api';
+import { UserContext } from '../../../context/users/UserContext';
 
 const UserList = () => {
   const [items, setItems] = useState([]);
+  const [userInfos] = useContext(UserContext);
+
+  const { user } = userInfos;
   const history = useHistory();
 
   useEffect(() => {
@@ -24,8 +28,16 @@ const UserList = () => {
     callApi();
   }, []);
 
-  const handleClickCreate = () => {
-    history.push('/users/create');
+  const renderButton = (i) => {
+    if (i.role === 'removed') {
+      return <KitButton disabled>Reactivate</KitButton>;
+    }
+
+    if (i.email === user.email || i.email === 'super-admin') {
+      return null;
+    }
+
+    return <KitButton disabled={user.role !== 'admin'}>Remove</KitButton>;
   };
 
   const renderItems = () => items.map((i) => {
@@ -37,7 +49,7 @@ const UserList = () => {
         <div className="user-info__content content__email">{i.email}</div>
         <div className="user-info__content content__role">{i.role}</div>
         <div className="user-info__content content__action">
-          <KitButton>Remove</KitButton>
+          {renderButton(i)}
         </div>
       </div>
     );
@@ -47,7 +59,7 @@ const UserList = () => {
     <div className="user-list__user-info-header">
       <div className="user-info__header-list header__name"><span>Name</span></div>
       <div className="user-info__header-list header__email"><span>Email</span></div>
-      <div className="user-info__header-list header__role"><span>Role</span></div>
+      <div className="user-info__header-list header__role"><span>Status</span></div>
       <div className="user-info__header-list header__action"><span>Action</span></div>
     </div>
   );
@@ -55,7 +67,14 @@ const UserList = () => {
   return (
     <div className="user-list">
       <KitContainer>
-        <KitButton className="user-list__create-user" onClick={handleClickCreate}>Create User</KitButton>
+        <div className="user-list__actions">
+          <div className="actions__create-user">
+            <KitButton onClick={() => history.push('/users/create')}>Create User</KitButton>
+          </div>
+          <div className="actions__change-password">
+            <KitButton onClick={() => history.push('/users/new-password')}>Update password</KitButton>
+          </div>
+        </div>
         {renderHeader()}
         {renderItems()}
       </KitContainer>
