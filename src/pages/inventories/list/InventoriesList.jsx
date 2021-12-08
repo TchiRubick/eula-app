@@ -31,7 +31,7 @@ const InventoriesList = () => {
     const query = {
       ...(s ? { search: s } : {}),
       ...(p ? { page: p } : {}),
-      size: 3,
+      size: 20,
     };
 
     const fetchedInventoriesList = await getInventories(query);
