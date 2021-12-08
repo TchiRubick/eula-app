@@ -82,9 +82,11 @@ const Menu = () => {
           <div className="menu__item__navlink">{renderNavLink()}</div>
         </div>
         <div className="menu__item">
-          <div className="menu__item__link-logout">
-            <Link to="/" onClick={handleLogOut}>log out</Link>
-          </div>
+          <Link to="/" onClick={handleLogOut}>
+            <div className="menu__item__link-logout">
+              log out
+            </div>
+          </Link>
         </div>
       </>
     );
