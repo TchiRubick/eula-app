@@ -22,6 +22,7 @@ const InventoriesList = (props) => {
     onPageChange,
     onSearchChange,
     onSelectItem,
+    enableCart,
   } = props;
 
   const renderLoader = () => (
@@ -53,6 +54,36 @@ const InventoriesList = (props) => {
     </div>
   );
 
+  const renderButtonAdd = (il) => {
+    if (!enableCart) {
+      return null;
+    }
+
+    return (
+      <KitButton
+        className="list__item-button"
+        onClick={() => onSelectItem({ barcode: il.barcode, price: il.price, name: il.name })}
+        disabled={il.quantity < 1}
+      >
+        Add to cart
+      </KitButton>
+    );
+  };
+
+  const renderCost = (il) => {
+    if (enableCart) {
+      return null;
+    }
+
+    return (
+      <span>
+        <span className="list__item-value__label">Cost:</span>
+        &nbsp;
+        {priceFormat(il.cost)}
+      </span>
+    );
+  };
+
   const renderList = () => items.map((il) => (
     <div className="list__item" key={il._id}>
       <div className="list__item-value">
@@ -60,11 +91,7 @@ const InventoriesList = (props) => {
         <span className="list__item-value_name">{il.name}</span>
       </div>
       <div className="list__item-value">
-        <span>
-          <span className="list__item-value__label">Cost:</span>
-          &nbsp;
-          {priceFormat(il.cost)}
-        </span>
+        {renderCost(il)}
         <span>
           <span className="list__item-value__label">Price:</span>
           &nbsp;
@@ -79,13 +106,7 @@ const InventoriesList = (props) => {
         </span>
       </div>
       <div className="list__item-value footer">
-        <KitButton
-          className="list__item-button"
-          onClick={() => onSelectItem({ barcode: il.barcode, price: il.price, name: il.name })}
-          disabled={il.quantity < 1}
-        >
-          Add to cart
-        </KitButton>
+        {renderButtonAdd(il)}
         <Link to={`/inventories/inventory/${il.barcode}`}>
           <KitButton className="list__item-button details">Details</KitButton>
         </Link>

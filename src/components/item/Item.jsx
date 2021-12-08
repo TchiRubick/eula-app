@@ -16,7 +16,7 @@ const Item = (props) => {
   return (
     <div key={i.barcode} className="item-comp__list-item">
       <div className="item-comp__list-item__important-info">
-        <span className="item-comp__list-item__name">{i.name} - {i.barcode}</span>
+        <span className="item-comp__list-item__name">{i.name}</span>
         <span className="item-comp__list-item__price">{priceFormat(i.price)}</span>
       </div>
       <div className="item-comp__list-item__important-commande">

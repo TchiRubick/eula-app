@@ -43,14 +43,15 @@
 
   .item-comp__list-item__important-info {
     display: flex;
-    font-size: 16px;
+    font-size: 11px;
     font-weight: bold;
     justify-content: space-between;
+    word-break: keep-all;
   }
 
   .item-comp__list-item__important-commande {
     display: flex;
-    font-size: 14px;
+    font-size: 11px;
     justify-content: space-between;
   }
 }

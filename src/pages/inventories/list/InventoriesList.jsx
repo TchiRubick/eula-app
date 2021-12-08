@@ -68,8 +68,8 @@ const InventoriesList = () => {
   };
 
   return (
-    <KitContainer>
-      <div className="inventories-list-page">
+    <div className="inventories-list-page">
+      <KitContainer>
         <KitButton onClick={handleClickCreate}>Create Inventory</KitButton>
         <InvList
           items={inventoriesList}
@@ -80,8 +80,8 @@ const InventoriesList = () => {
           onSearchChange={handleSearchChange}
           onSelectItem={handleItemSelect}
         />
-      </div>
-    </KitContainer>
+      </KitContainer>
+    </div>
   );
 };
 

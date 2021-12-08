@@ -284,6 +284,7 @@ const Cashier = () => {
             search={search}
             onSearchChange={handleSearchChange}
             onSelectItem={addToCart}
+            enableCart
           />
         </div>
         <div className="cashier__cart">
