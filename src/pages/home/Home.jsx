@@ -29,7 +29,7 @@ const Home = () => {
     setValues({ ...values, [key]: e.target.value });
   };
 
-  const isValid = (v) => v.length > 2;
+  const isValid = (v) => v.length > 5;
 
   const handleButtonClick = async () => {
     setIsRequestLocked(true);
@@ -59,6 +59,18 @@ const Home = () => {
     return (!isValid(values.email) || !isValid(values.password));
   };
 
+  const handleKeypress = (e) => {
+    if (handleButtonState()) {
+      return;
+    }
+
+    if (e.code !== 'Enter' || e.code !== 'NumpadEnter') {
+      return;
+    }
+
+    handleButtonClick();
+  };
+
   const pageContent = () => {
     if (userInfos.user) {
       return (
@@ -70,7 +82,7 @@ const Home = () => {
 
     return (
       <div className="page-home__container__card">
-        <div className="page-home__container-grid">
+        <div className="page-home__container-grid" onKeyPress={handleKeypress} role="button" tabIndex="0">
           <div className="page-home__container-grid__item">
             <KitTextField
               placeholder="rakoto@mail.mg"
