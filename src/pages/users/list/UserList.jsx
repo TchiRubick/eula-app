@@ -33,15 +33,19 @@ const UserList = () => {
       return <KitButton disabled>Reactivate</KitButton>;
     }
 
-    if (i.email === user.email || i.email === 'super-admin') {
+    if (i.email === user.email || i.role === 'admin') {
       return null;
     }
 
-    return <KitButton disabled={user.role !== 'admin'}>Remove</KitButton>;
+    return <KitButton disabled>Remove</KitButton>;
   };
 
   const renderItems = () => items.map((i) => {
     const { _id: userId } = i;
+
+    if (i.role === 'super-admin') {
+      return null;
+    }
 
     return (
       <div className="user-list__user-info" key={userId}>
