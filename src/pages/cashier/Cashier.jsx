@@ -242,7 +242,7 @@ const Cashier = () => {
     quantity: c.quantity,
   }));
 
-  const isValidCart = () => cart.length > 0 && moneyBack >= 0;
+  const isValidCart = () => cart.length > 0 && moneyBack >= 0 && amountPay && amountPay > 0;
 
   const handleNotificationClose = () => {
     setIsAlertOpen(false);
