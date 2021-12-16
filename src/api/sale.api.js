@@ -17,3 +17,9 @@ export const getLastSale = async () => {
 
   return res;
 };
+
+export const getSales = async (query) => {
+  const res = await queryApiCall('GET', '/private/sales', query);
+
+  return res;
+};

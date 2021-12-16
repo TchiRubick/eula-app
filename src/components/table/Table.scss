@@ -1,0 +1,42 @@
+@import "@my2rela/react-kit/components/style.scss";
+
+.table-comp {
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+
+  .table-comp__table {
+    border: 1px solid $color-main;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    width: 100%;
+
+    tr, td, th {
+      padding: 0.5rem;
+    }
+
+    .__table-header {
+      tr {
+        background-color: $color-main-light;
+      }
+
+      th {
+        border-radius: 0.4rem;
+      }
+    }
+
+    .__table-content {
+      tr {
+        cursor: pointer;
+        &:hover {
+          background-color: $color-third;
+        }
+      }
+
+      td {
+        border-radius: 0.4rem;
+      }
+    }
+  }
+
+}

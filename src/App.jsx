@@ -15,6 +15,7 @@ import UserList from './pages/users/list/UserList';
 import UserCreate from './pages/users/create/UserCreate';
 import ChangePassword from './pages/users/changePassword/ChangePassword';
 import Cashier from './pages/cashier/Cashier';
+import SaleList from './pages/sales/list/SaleList';
 import NotFound from './pages/errors/notFound/NotFound';
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
             <Route exact path="/users"><UserList /></Route>
             <Route exact path="/users/create"><UserCreate /></Route>
             <Route exact path="/users/new-password"><ChangePassword /></Route>
+            <Route exact path="/sales"><SaleList /></Route>
             <Route><NotFound /></Route>
           </Switch>
         </Layout>
