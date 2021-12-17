@@ -83,7 +83,7 @@ const SaleList = () => {
   return (
     <div className="sale-list">
       <KitContainer>
-        <h1>{`Total: ${dateFilter}: ${resume.total}`}</h1>
+        <h1>{`Total: ${dateFilter}: ${resume.total || 0}`}</h1>
         <div className="sale-list__filter-date">
           <KitTextField type="date" onChange={handleDateChange} value={dateFilter} />
         </div>
