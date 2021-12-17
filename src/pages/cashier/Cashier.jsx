@@ -71,7 +71,7 @@ const Cashier = () => {
   const fetchInvs = async (s) => {
     const invs = await getInventories({
       ...(s ? { search: s } : {}),
-      size: 6,
+      size: 12,
     });
 
     if (invs instanceof Error) {
