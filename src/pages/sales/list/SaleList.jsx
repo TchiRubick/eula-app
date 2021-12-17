@@ -27,6 +27,10 @@ const SaleList = () => {
   const [resume, setResume] = useState({});
 
   const fetchApiData = async () => {
+    if (!dateFilter) {
+      return;
+    }
+
     const res = await getSales({ size: 30, page: pagination.page, date: dateFilter });
 
     if (res instanceof Error) {
