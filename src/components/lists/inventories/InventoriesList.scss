@@ -47,12 +47,16 @@
 
         .list__item-value-infos__barcode {
           font-weight: bold;
-          font-size: 1rem;
+          font-size: 0.8rem;
+          word-break: break-all;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow-x: hidden;
         }
 
         .list__item-value-infos_name {
           font-style: italic;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
       }
 
@@ -68,11 +72,11 @@
           font-weight: bold;
 
           &.__number-cost {
-            color: #ec431d;
+            color: #f37531;
           }
 
           &.__number-price {
-            color: #0a5e3e;
+            color: #0f2680;
           }
 
           &.__number-empty {
