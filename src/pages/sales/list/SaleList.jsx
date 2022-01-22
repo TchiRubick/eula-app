@@ -8,7 +8,7 @@ import Table from '../../../components/table/Table';
 
 import { getSales } from '../../../api/sale.api';
 
-const headers = ['Ticket', 'User', 'Payed', 'Backed', 'Created At'];
+const headers = ['Ticket', 'User', 'Status', 'Payed', 'Backed', 'Created At'];
 
 const getDateOfToday = () => {
   const local = new Date();
@@ -67,11 +67,15 @@ const SaleList = () => {
       render: (d) => <div>{d.user.name}</div>,
     },
     {
+      key: 'status',
+      render: (d) => <div>{d.status}</div>,
+    },
+    {
       key: 'payed',
       render: (d) => <div>{d.payed}</div>,
     },
     {
-      key: 'backed',
+      key: 'returned',
       render: (d) => <div>{d.backed}</div>,
     },
     {

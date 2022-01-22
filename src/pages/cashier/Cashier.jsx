@@ -6,7 +6,11 @@ import {
   KitButton,
   KitAlert,
 } from '@my2rela/react-kit';
+
 import useScanDetection from 'use-scan-detection';
+
+import { FaMoneyBillAlt } from 'react-icons/fa';
+import { MdRefresh, MdCancel } from 'react-icons/md';
 
 import './Cashier.scss';
 
@@ -305,17 +309,20 @@ const Cashier = () => {
             <KitTextField label="Payed" type="number" onBlur={handlePayBlur} onFocus={handlePayFocus} value={amountPay} onChange={handleAmoutToPay} />
             <div className="cashier__cart-pay__action">
               <div className="cashier__cart-pay__action-pay">
-                <KitButton className="action-pay__button" onClick={handlePay} disabled={!isValidCart()}>Pay</KitButton>
+                <KitButton className="action-pay__button" onClick={handlePay} disabled={!isValidCart()}>
+                  <FaMoneyBillAlt />&nbsp;
+                  Pay
+                </KitButton>
               </div>
               <div className="cashier__cart-pay__action-cancel">
-                <KitButton className="action-cancel__button" onClick={handleCancel}>Clear</KitButton>
+                <KitButton className="action-cancel__button" onClick={handleCancel}><MdRefresh />&nbsp;Clear</KitButton>
               </div>
             </div>
           </div>
           <div className="cashier__cart-last-transaction">
             <h5>Your last transaction</h5>
             <SaleItem item={lastSale} />
-            <KitButton disabled={!lastSale || lastSale.status !== 'saled'} onClick={cancelLastTransaction}>Cancel this transaction</KitButton>
+            <KitButton disabled={!lastSale || lastSale.status !== 'saled'} onClick={cancelLastTransaction}><MdCancel />&nbsp;Cancel this transaction</KitButton>
           </div>
         </div>
       </div>

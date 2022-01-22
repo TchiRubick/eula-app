@@ -10,6 +10,7 @@ import {
 } from '@my2rela/react-kit';
 
 import { HiOutlineSearch } from 'react-icons/hi';
+import { FaCartArrowDown } from 'react-icons/fa';
 
 import './InventoriesList.scss';
 
@@ -73,7 +74,7 @@ const InventoriesList = (props) => {
         onClick={() => onSelectItem({ barcode: il.barcode, price: il.price, name: il.name })}
         disabled={il.quantity < 1}
       >
-        Add to cart
+        <FaCartArrowDown />&nbsp;Add to cart
       </KitButton>
     );
   };
