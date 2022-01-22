@@ -15,7 +15,7 @@
     .page-home__container__card {
       @include border-card;
       margin: auto;
-      width: 50%;
+      width: 100%;
 
       @include tabletBreakpoint {
         width: 50%;

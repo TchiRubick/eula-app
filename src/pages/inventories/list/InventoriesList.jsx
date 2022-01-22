@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { KitContainer, KitButton } from '@my2rela/react-kit';
+import { BsPlusLg } from 'react-icons/bs';
 
 import './InventoriesList.scss';
 
@@ -70,7 +71,11 @@ const InventoriesList = () => {
   return (
     <div className="inventories-list-page">
       <KitContainer>
-        <KitButton onClick={handleClickCreate}>Create Inventory</KitButton>
+        <div className="inventories-list-page__button-add">
+          <KitButton onClick={handleClickCreate}>
+            <BsPlusLg />&nbsp;Create Inventory
+          </KitButton>
+        </div>
         <InvList
           items={inventoriesList}
           pagination={pagination}

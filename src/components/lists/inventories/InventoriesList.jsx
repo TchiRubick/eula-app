@@ -9,6 +9,8 @@ import {
   KitButton,
 } from '@my2rela/react-kit';
 
+import { HiOutlineSearch } from 'react-icons/hi';
+
 import './InventoriesList.scss';
 
 import { priceFormat } from '../../../helpers/transform';
@@ -43,11 +45,17 @@ const InventoriesList = (props) => {
     );
   };
 
+  const renderLabel = () => (
+    <>
+      <HiOutlineSearch />&nbsp;Search by Barcode or Name
+    </>
+  );
+
   const renderFilter = () => (
     <div className="filter__input">
       <KitTextField
         value={search}
-        label="Search by Barcode or Name"
+        label={renderLabel()}
         onChange={onSearchChange}
         placeholder="00000000000"
       />
@@ -78,31 +86,42 @@ const InventoriesList = (props) => {
     return (
       <span>
         <span className="list__item-value__label">Cost:</span>
-        &nbsp;
-        {priceFormat(il.cost)}
+        <span className="list__item-value__number __number-cost">&nbsp;{priceFormat(il.cost)}</span>
       </span>
     );
   };
 
+  const getClassNameQuantity = (il) => {
+    if (!il.quantity || il.quantity < 1) {
+      return 'empty';
+    }
+
+    if (il.quantity < 10) {
+      return 'warning';
+    }
+
+    return 'correct';
+  };
+
   const renderList = () => items.map((il) => (
     <div className="list__item" key={il._id}>
-      <div className="list__item-value">
-        <span className="list__item-value__barcode">{il.barcode}</span>
-        <span className="list__item-value_name">{il.name}</span>
+      <div className="list__item-value-infos">
+        <span className="list__item-value-infos_name">{il.name}</span>
+        &nbsp;-&nbsp;
+        <span className="list__item-value-infos__barcode">{il.barcode}</span>
       </div>
+      <hr />
       <div className="list__item-value">
         {renderCost(il)}
         <span>
           <span className="list__item-value__label">Price:</span>
-          &nbsp;
-          {priceFormat(il.price)}
+          <span className="list__item-value__number __number-price">&nbsp;{priceFormat(il.price)}</span>
         </span>
-      </div>
-      <div className="list__item-value">
         <span>
           <span className="list__item-value__label">Quantity:</span>
-          &nbsp;
-          {il.quantity}
+          <span className={`list__item-value__number __number-${getClassNameQuantity(il)}`}>
+            &nbsp;{il.quantity}
+          </span>
         </span>
       </div>
       <div className="list__item-value footer">

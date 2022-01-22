@@ -75,6 +75,18 @@ const FormInventory = (props) => {
     setValues({ ...values, barcode });
   };
 
+  const handleNumFocus = (k) => () => {
+    if (values[k] === 0) {
+      setValues({ ...values, [k]: '' });
+    }
+  };
+
+  const handleNumBlur = (k) => () => {
+    if (values[k] === '') {
+      setValues({ ...values, [k]: 0 });
+    }
+  };
+
   useScanDetection({ onComplete: setBarcodeScan });
 
   return (
@@ -100,6 +112,8 @@ const FormInventory = (props) => {
           <KitTextField
             type="number"
             label="cost"
+            onBlur={handleNumBlur('cost')}
+            onFocus={handleNumFocus('cost')}
             onChange={handleChange('cost')}
             value={values.cost}
             error={values.cost && (!isValidNumber('cost') || !isCostValid()) ? 'The cost can not be inferior to 0 and must be defined if there\'s a quantity' : ''}
@@ -109,6 +123,8 @@ const FormInventory = (props) => {
           <KitTextField
             type="number"
             label="price"
+            onBlur={handleNumBlur('price')}
+            onFocus={handleNumFocus('price')}
             onChange={handleChange('price')}
             value={values.price}
             error={values.price && !isValidNumber('price') ? 'The price can not be inferior to 0' : ''}
@@ -118,6 +134,8 @@ const FormInventory = (props) => {
           <KitTextField
             type="number"
             label="quantity"
+            onBlur={handleNumBlur('quantity')}
+            onFocus={handleNumFocus('quantity')}
             onChange={handleChange('quantity')}
             value={values.quantity}
             error={values.quantity && !isValidNumber('quantity') ? 'The quantity can not be inferior to 0' : ''}

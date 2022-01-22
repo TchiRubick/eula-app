@@ -6,7 +6,7 @@
 
   .inventories-list__filter {
     .filter__input {
-      width: 100%;
+      width: 20rem;
     }
   }
 
@@ -22,7 +22,7 @@
     }
 
     .list__item {
-      width: 49%;
+      width: 30%;
       box-sizing: border-box;
       @include border-card;
       margin: 0.2rem 0;
@@ -42,20 +42,50 @@
         background-color: $color-main-light;
       }
 
+      .list__item-value-infos { 
+        display: flex;
+
+        .list__item-value-infos__barcode {
+          font-weight: bold;
+          font-size: 1rem;
+        }
+
+        .list__item-value-infos_name {
+          font-style: italic;
+          font-size: 1rem;
+        }
+      }
+
       .list__item-value {
         display: flex;
         justify-content: space-between;
 
-        .list__item-value__barcode {
-          font-weight: bold;
-        }
-
-        .list__item-value_name {
-          font-style: italic;
-        }
-
         .list__item-value__label {
           text-decoration: underline;
+        }
+
+        .list__item-value__number {
+          font-weight: bold;
+
+          &.__number-cost {
+            color: #ec431d;
+          }
+
+          &.__number-price {
+            color: #0a5e3e;
+          }
+
+          &.__number-empty {
+            color: #ff0000;
+          }
+
+          &.__number-warning {
+            color: #cadf0b;
+          }
+
+          &.__number-correct {
+            color: #0c8015;
+          }
         }
 
         &.footer {
